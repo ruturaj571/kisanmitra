@@ -1,6 +1,7 @@
 """
-KisanBot - AI WhatsApp Agricultural Advisory Bot
+KisanMitra V2 - AI WhatsApp Agricultural Advisory Bot
 Maharashtra Farmer Advisory Service
+Upgraded: Better Marathi tone, structured answers, memory, feedback loop
 """
 
 import os
@@ -22,155 +23,124 @@ ANTHROPIC_API_KEY  = os.environ.get("ANTHROPIC_API_KEY")
 
 anthropic_client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
 
-# ── Maharashtra Crop Knowledge ─────────────────────────────────────────────────
-MAHARASHTRA_CROPS = {
-    "sugarcane": {
-        "marathi": "ऊस",
-        "diseases": ["Red Rot (तांबेरा)", "Wilt (मर रोग)", "Smut (काजळी)", "Pokkah Boeng"],
-        "pests": ["Pyrilla (पायरिला)", "Top Borer (शेंडा अळी)", "Early Shoot Borer", "Woolly Aphid (लोकरी माव)"],
-        "districts": ["Kolhapur", "Solapur", "Sangli", "Satara", "Ahmednagar"]
-    },
-    "soybean": {
-        "marathi": "सोयाबीन",
-        "diseases": ["Yellow Mosaic Virus (पिवळा मोझेक)", "Bacterial Pustule", "Charcoal Rot"],
-        "pests": ["Stem Fly (खोड माशी)", "Girdle Beetle (खोड किडा)", "Spodoptera (लष्करी अळी)"],
-        "districts": ["Latur", "Osmanabad", "Nanded", "Aurangabad", "Buldhana"]
-    },
-    "cotton": {
-        "marathi": "कापूस",
-        "diseases": ["Bacterial Blight (पानावरील करपा)", "Fusarium Wilt (मर रोग)", "Alternaria Leaf Spot"],
-        "pests": ["Pink Bollworm (गुलाबी बोंड अळी)", "American Bollworm", "Whitefly (पांढरी माशी)", "Thrips"],
-        "districts": ["Vidarbha", "Marathwada", "Jalgaon", "Dhule"]
-    },
-    "wheat": {
-        "marathi": "गहू",
-        "diseases": ["Yellow Rust (पिवळी गंज)", "Brown Rust (तपकिरी गंज)", "Loose Smut", "Powdery Mildew"],
-        "pests": ["Aphid (माव)", "Termite (वाळवी)", "Army Worm"],
-        "districts": ["Nashik", "Pune", "Ahmednagar"]
-    },
-    "onion": {
-        "marathi": "कांदा",
-        "diseases": ["Purple Blotch (जांभळा डाग)", "Stemphylium Blight", "Basal Rot", "Downy Mildew"],
-        "pests": ["Thrips (फुलकिडे)", "Onion Fly", "Maggot"],
-        "districts": ["Nashik", "Pune", "Ahmednagar", "Solapur"]
-    },
-    "jowar": {
-        "marathi": "ज्वारी",
-        "diseases": ["Grain Mold (दाण्यांची बुरशी)", "Anthracnose", "Head Smut (शीर्ष काजळी)", "Downy Mildew"],
-        "pests": ["Shoot Fly (खोड माशी)", "Stem Borer (खोड किडा)", "Aphid"],
-        "districts": ["Solapur", "Osmanabad", "Latur", "Aurangabad"]
-    },
-    "tur": {
-        "marathi": "तूर",
-        "diseases": ["Fusarium Wilt (मर)", "Sterility Mosaic (बांझपणा मोझेक)", "Phytophthora Blight"],
-        "pests": ["Gram Pod Borer (शेंगा पोखरणारी अळी)", "Plume Moth", "Blister Beetle"],
-        "districts": ["Vidarbha", "Marathwada", "Latur", "Nanded"]
-    },
-    "grape": {
-        "marathi": "द्राक्षे",
-        "diseases": ["Downy Mildew (केवडा)", "Powdery Mildew (भुरी)", "Anthracnose", "Botrytis"],
-        "pests": ["Thrips", "Mealybug (पांढरी माव)", "Flea Beetle"],
-        "districts": ["Nashik", "Pune", "Sangli", "Solapur"]
-    },
-    "pomegranate": {
-        "marathi": "डाळिंब",
-        "diseases": ["Bacterial Blight (तेल्या)", "Cercospora Fruit Spot", "Heart Rot"],
-        "pests": ["Fruit Borer (फळ पोखरणारी अळी)", "Aphid", "Thrips"],
-        "districts": ["Solapur", "Nashik", "Pune", "Ahmednagar", "Osmanabad"]
-    }
-}
-
 MSP_2024_25 = {
-    "Paddy/Bhaat (Common)": "₹2,300/quintal",
-    "Jowar/Jvari (Hybrid)": "₹3,371/quintal",
-    "Jowar/Jvari (Maldandi)": "₹3,421/quintal",
-    "Bajra/Bajri": "₹2,625/quintal",
-    "Maize/Makka": "₹2,225/quintal",
-    "Tur/Arhar": "₹7,550/quintal",
-    "Moong": "₹8,682/quintal",
-    "Urad": "₹7,400/quintal",
-    "Groundnut/Shengdana": "₹6,783/quintal",
-    "Soybean": "₹4,892/quintal",
-    "Cotton/Kapus (Medium)": "₹7,121/quintal",
-    "Cotton/Kapus (Long)": "₹7,521/quintal",
-    "Wheat/Gahu": "₹2,275/quintal",
-    "Gram/Chana": "₹5,440/quintal",
-    "Sugarcane/Us (FRP)": "₹340/quintal",
-    "Onion/Kanda (MSP)": "₹800/quintal (when declared)"
+    "भात/तांदूळ": "₹2,300/क्विंटल",
+    "ज्वारी (हायब्रिड)": "₹3,371/क्विंटल",
+    "ज्वारी (मालदांडी)": "₹3,421/क्विंटल",
+    "बाजरी": "₹2,625/क्विंटल",
+    "मका": "₹2,225/क्विंटल",
+    "तूर/अरहर": "₹7,550/क्विंटल",
+    "मूग": "₹8,682/क्विंटल",
+    "उडीद": "₹7,400/क्विंटल",
+    "शेंगदाणा": "₹6,783/क्विंटल",
+    "सोयाबीन": "₹4,892/क्विंटल",
+    "कापूस (मध्यम)": "₹7,121/क्विंटल",
+    "कापूस (लांब धागा)": "₹7,521/क्विंटल",
+    "गहू": "₹2,275/क्विंटल",
+    "हरभरा": "₹5,440/क्विंटल",
+    "ऊस (FRP)": "₹340/क्विंटल",
+    "सूर्यफूल": "₹7,280/क्विंटल",
+    "मोहरी": "₹5,950/क्विंटल"
 }
 
 GOVT_SCHEMES = {
-    "PM Kisan": "₹6,000/year in 3 installments. Apply at pmkisan.gov.in or CSC center with Aadhaar + bank passbook + 7/12 utara.",
-    "PMFBY (Crop Insurance)": "Premium only 2% for Kharif, 1.5% for Rabi. Apply at bank branch before cutoff with crop sowing details.",
-    "Kisan Credit Card (KCC)": "Loan up to ₹3 lakh at 4% interest/year. Apply at any bank with land records + Aadhaar.",
-    "Soil Health Card": "Free soil testing + fertilizer recommendations. Contact nearest KVK or taluka agriculture office.",
-    "PMKSY (Drip/Sprinkler)": "55% subsidy on drip/sprinkler irrigation. Apply at district agriculture office with land records.",
-    "Nanaji Deshmukh Krishi Sanjivani": "Maharashtra scheme for water-stressed villages. Check mahakrishi.gov.in",
-    "Magel Tyala Shet Tale": "Maharashtra farm pond scheme - subsidy for water storage. Contact taluka agriculture office."
+    "PM Kisan": "दरवर्षी 6000 रुपये (3 हप्त्यांत). pmkisan.gov.in वर किंवा CSC केंद्रात आधार + बँक पासबुक + 7/12 उतारा घेऊन अर्ज करा.",
+    "PMFBY पीक विमा": "खरीपसाठी फक्त 2 टक्के हप्ता, रब्बीसाठी 1.5 टक्के. बँकेत पेरणीपूर्वी अर्ज करा.",
+    "किसान क्रेडिट कार्ड": "3 लाखापर्यंत कर्ज, फक्त 4 टक्के व्याज. जवळच्या बँकेत जमीन कागदपत्रे आणि आधार घेऊन जा.",
+    "मृदा आरोग्य कार्ड": "मोफत माती तपासणी. जवळच्या KVK किंवा तालुका कृषी कार्यालयात जा.",
+    "ठिबक सिंचन PMKSY": "55 टक्के अनुदान. जिल्हा कृषी कार्यालयात अर्ज करा.",
+    "मागेल त्याला शेततळे": "महाराष्ट्र शासन योजना. तालुका कृषी अधिकाऱ्यांशी संपर्क करा."
 }
 
-# ── System Prompt ─────────────────────────────────────────────────────────────
-SYSTEM_PROMPT = f"""You are KisanBot — a trusted AI agricultural advisor (Krishi Mitra) for Maharashtra farmers.
-You speak like a knowledgeable, warm local agronomist — practical, simple, never complicated.
-
-LANGUAGE RULES (VERY IMPORTANT):
-- Farmer writes in Marathi → Reply ONLY in Marathi (Devanagari script)
-- Farmer writes in Hindi → Reply ONLY in Hindi (Devanagari script)
-- Farmer writes in English → Reply in English
-- Mixed language → Reply in Marathi with some Hindi/English words as needed
-- ALWAYS keep language SIMPLE — these are farmers, not scientists
-- Use local crop names: ऊस (sugarcane), कापूस (cotton), सोयाबीन, तूर, ज्वारी, गहू, कांदा
-
-WHEN FARMER SENDS A PHOTO:
-Analyze the image carefully and provide:
-1. 🔍 *रोग/किडीचे नाव* — Disease/pest name (local + scientific)
-2. 📋 *लक्षणे* — What symptoms you can see in the photo
-3. ⚠️ *कारण* — Cause (fungal/bacterial/viral/insect)
-4. 🚨 *तातडीचे उपाय* — Immediate action (do TODAY)
-5. 💊 *उपचार* — Specific medicine name + dosage + how to spray
-6. 🛡️ *प्रतिबंध* — Prevention for future
-7. 📉 *नुकसान* — Yield loss if untreated
-
-FOR MEDICINE RECOMMENDATIONS:
-- Give specific brand names available in Maharashtra markets
-- Give exact dosage (per 15L pump / per acre)
-- Mention cheaper generic options when available
-- Add safety warning: "फवारणी करताना मास्क आणि हातमोजे वापरा"
-
-FOR MSP PRICES:
-{json.dumps(MSP_2024_25, ensure_ascii=False, indent=2)}
-
-FOR GOVERNMENT SCHEMES:
-{json.dumps(GOVT_SCHEMES, ensure_ascii=False, indent=2)}
-
-MAHARASHTRA CROP KNOWLEDGE:
-{json.dumps(MAHARASHTRA_CROPS, ensure_ascii=False, indent=2)}
-
-IMPORTANT RULES:
-- Never recommend banned pesticides (Monocrotophos, Endosulfan, etc.)
-- For serious disease outbreaks, always say "जवळच्या KVK किंवा कृषी अधिकाऱ्यांना भेटा"
-- Keep responses under 300 words — farmers read on small phone screens
-- Use bullet points and emojis to make it easy to read
-- End every disease/pest reply with: "🙏 आणखी माहितीसाठी फोटो किंवा प्रश्न पाठवा"
-"""
-
-# ── Conversation Memory ────────────────────────────────────────────────────────
 conversation_store = {}
 
-def get_history(phone):
-    return conversation_store.get(phone, [])
-
-def save_to_history(phone, role, content):
+def get_farmer_data(phone):
     if phone not in conversation_store:
-        conversation_store[phone] = []
-    conversation_store[phone].append({"role": role, "content": content})
-    # Keep last 8 messages only
-    if len(conversation_store[phone]) > 8:
-        conversation_store[phone] = conversation_store[phone][-8:]
+        conversation_store[phone] = {
+            "messages": [],
+            "context": {
+                "crop": None,
+                "location": None,
+                "last_issue": None,
+                "greeted": False
+            }
+        }
+    return conversation_store[phone]
 
-# ── AI Response ───────────────────────────────────────────────────────────────
+def save_message(phone, role, content):
+    data = get_farmer_data(phone)
+    data["messages"].append({"role": role, "content": content})
+    if len(data["messages"]) > 10:
+        data["messages"] = data["messages"][-10:]
+
+def update_context(phone, key, value):
+    get_farmer_data(phone)["context"][key] = value
+
+def get_context_string(phone):
+    ctx = get_farmer_data(phone)["context"]
+    parts = []
+    if ctx["crop"]:
+        parts.append(f"शेतकऱ्याचे पीक: {ctx['crop']}")
+    if ctx["location"]:
+        parts.append(f"ठिकाण: {ctx['location']}")
+    if ctx["last_issue"]:
+        parts.append(f"मागील समस्या: {ctx['last_issue']}")
+    return " | ".join(parts) if parts else ""
+
+def build_system_prompt(phone):
+    context = get_context_string(phone)
+    msp_text = "\n".join([f"{k}: {v}" for k, v in MSP_2024_25.items()])
+    scheme_text = "\n".join([f"{k}: {v}" for k, v in GOVT_SCHEMES.items()])
+
+    return f"""तू KisanMitra आहेस - महाराष्ट्रातील शेतकऱ्यांचा AI कृषी मित्र.
+तू एखाद्या अनुभवी, जवळच्या कृषी मित्रासारखा बोलतोस - सोपे, थेट, मराठीत.
+
+{f"शेतकरी माहिती: {context}" if context else ""}
+
+भाषा नियम:
+- नेहमी साध्या ग्रामीण मराठीत बोल
+- इंग्रजी शब्द शक्यतो टाळ
+- छोटी वाक्ये, जास्तीत जास्त 5-6 ओळी
+- शेतकरी हिंदीत बोलला तर हिंदीत उत्तर दे
+
+रोग/किड उत्तराची पद्धत:
+समस्या: [काय दिसतंय]
+कारण: असं दिसतं की... [शक्य कारण]
+काय करावे: [आजच करायची गोष्ट]
+औषध/उपाय: [नाव + मात्रा प्रति 15 लिटर पंप]
+सूचना: [एक महत्त्वाची गोष्ट]
+
+महत्त्वाचे नियम:
+1. कधीही 100 टक्के खात्रीने सांगू नकोस - "असं दिसतं की" असे म्हण
+2. माहिती अपुरी असेल तर जास्तीत जास्त 2 प्रश्न विचार
+3. प्रत्येक उत्तराच्या शेवटी विचार: "ही माहिती उपयोगी पडली का? होय की नाही सांगा"
+4. शेतकऱ्याने पीक सांगितले तर परत विचारू नकोस
+5. स्वागत संदेश परत देऊ नकोस
+6. बंदी असलेली कीटकनाशके सुचवू नकोस
+7. गंभीर समस्येसाठी म्हण: जवळच्या KVK किंवा कृषी अधिकाऱ्यांना भेटा
+
+फोटो आल्यावर:
+- फोटो नीट बघ, रोग/किड ओळख
+- वरील format मध्ये उत्तर दे
+- स्पष्ट दिसत नसेल तर 1-2 प्रश्न विचार
+
+MSP भाव 2024-25:
+{msp_text}
+
+सरकारी योजना:
+{scheme_text}
+"""
+
 def get_response(phone, text, image_url=None):
-    history = get_history(phone)
+    farmer = get_farmer_data(phone)
+    history = farmer["messages"]
+
+    crops = ["सोयाबीन", "कापूस", "ऊस", "तूर", "ज्वारी", "गहू", "कांदा",
+             "द्राक्षे", "डाळिंब", "मका", "भात", "हरभरा", "मूग", "उडीद"]
+    for crop in crops:
+        if crop in (text or ""):
+            update_context(phone, "crop", crop)
+            break
 
     if image_url:
         try:
@@ -181,7 +151,6 @@ def get_response(phone, text, image_url=None):
             )
             encoded = base64.standard_b64encode(img_data.content).decode("utf-8")
             content_type = img_data.headers.get("Content-Type", "image/jpeg")
-
             user_content = [
                 {
                     "type": "image",
@@ -189,12 +158,12 @@ def get_response(phone, text, image_url=None):
                 },
                 {
                     "type": "text",
-                    "text": text if text else "या पिकाच्या फोटोमध्ये काय रोग किंवा किड आहे ते सांगा आणि उपाय द्या."
+                    "text": text if text else "या फोटोत काय रोग किंवा किड आहे? उपाय सांगा."
                 }
             ]
         except Exception as e:
             logger.error(f"Image error: {e}")
-            user_content = text + " (शेतकऱ्याने फोटो पाठवला पण तो उघडता आला नाही)"
+            user_content = (text or "") + " (फोटो उघडता आला नाही. माहिती विचारून उत्तर द्या.)"
     else:
         user_content = text
 
@@ -202,23 +171,39 @@ def get_response(phone, text, image_url=None):
 
     try:
         response = anthropic_client.messages.create(
-            model="claude-opus-4-5",
-            max_tokens=800,
-            system=SYSTEM_PROMPT,
+            model="claude-haiku-4-5-20251001",
+            max_tokens=600,
+            system=build_system_prompt(phone),
             messages=messages
         )
         reply = response.content[0].text
-        save_to_history(phone, "user", text or "photo")
-        save_to_history(phone, "assistant", reply)
-        return reply
-    except Exception as e:
-        logger.error(f"Claude error: {e}")
-        return "माफ करा, थोडी समस्या आहे. कृपया पुन्हा प्रयत्न करा. 🙏"
+        save_message(phone, "user", text or "photo")
+        save_message(phone, "assistant", reply)
 
-# ── Routes ─────────────────────────────────────────────────────────────────────
+        if image_url or any(w in (text or "") for w in ["रोग", "किड", "पिवळ", "काळ", "डाग", "सुकत", "मर"]):
+            update_context(phone, "last_issue", text or "फोटो पाठवला")
+
+        return reply
+
+    except Exception as e:
+        logger.error(f"Error: {e}")
+        if "credit" in str(e).lower():
+            return "सेवा तात्पुरती बंद आहे. लवकरच पुन्हा सुरू होईल."
+        return "माफ करा, थोडी समस्या आहे. पुन्हा प्रयत्न करा."
+
+WELCOME = """नमस्कार! मी KisanMitra - तुमचा AI कृषी मित्र!
+
+मी मदत करू शकतो:
+- पिकाचा फोटो पाठवा - रोग किंवा किड ओळखतो
+- हमी भाव (MSP) सांगतो
+- सरकारी योजना समजावतो
+- खत आणि फवारणी सल्ला देतो
+
+मराठी, हिंदी किंवा English मध्ये विचारा"""
+
 @app.route("/", methods=["GET"])
 def home():
-    return "🌾 KisanBot चालू आहे! | KisanBot is running!", 200
+    return "KisanMitra V2 चालू आहे!", 200
 
 @app.route("/webhook", methods=["POST"])
 def webhook():
@@ -230,33 +215,22 @@ def webhook():
     logger.info(f"Message from {sender}: {msg_text[:40]} | Photo: {num_media > 0}")
 
     resp = MessagingResponse()
+    farmer = get_farmer_data(sender)
 
-    # Greeting
-    if msg_text.lower() in ["hi", "hello", "namaskar", "namaste", "नमस्ते", "नमस्कार", "start", "हाय", "हेलो"]:
-        welcome = """🌾 *नमस्कार! KisanBot मध्ये आपले स्वागत आहे!*
+    greet_words = ["hi", "hello", "namaskar", "namaste", "नमस्ते",
+                   "नमस्कार", "start", "हाय", "सुरू", "हेलो"]
 
-मी तुमचा AI कृषी सल्लागार आहे. मी मदत करू शकतो:
-
-📸 *पिकाचा फोटो पाठवा* → रोग/किड ओळख + उपाय
-💰 *MSP भाव* → "सोयाबीन भाव किती?" असे विचारा
-🏛️ *योजना माहिती* → "PM Kisan कसे मिळवायचे?"
-🌱 *खत सल्ला* → "युरिया किती द्यावे?"
-🌦️ *पेरणी सल्ला* → "कापूस कधी पेरावा?"
-
-*मराठी, हिंदी किंवा English मध्ये विचारा* 😊
-
-आजचा प्रश्न काय आहे? 👇"""
-        resp.message(welcome)
+    if not farmer["context"]["greeted"] or msg_text.lower() in greet_words:
+        farmer["context"]["greeted"] = True
+        resp.message(WELCOME)
         return str(resp)
 
-    # Empty message
     if not msg_text and not image_url:
-        resp.message("नमस्कार! 🌾 पिकाचा फोटो पाठवा किंवा प्रश्न विचारा.")
+        resp.message("फोटो पाठवा किंवा प्रश्न विचारा.")
         return str(resp)
 
     reply = get_response(sender, msg_text, image_url)
 
-    # Split if too long for WhatsApp
     if len(reply) > 1500:
         for chunk in [reply[i:i+1500] for i in range(0, len(reply), 1500)]:
             resp.message(chunk)
