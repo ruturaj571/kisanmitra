@@ -1,7 +1,7 @@
 """
-KisanMitra V2 - AI WhatsApp Agricultural Advisory Bot
+KisanMitra V3 - AI WhatsApp Agricultural Advisory Bot
 Maharashtra Farmer Advisory Service
-Upgraded: Better Marathi tone, structured answers, memory, feedback loop
+Upgraded: ICAR + NIPHM knowledge base integrated
 """
 
 import os
@@ -9,9 +9,23 @@ import logging
 import requests
 import base64
 import json
+import pathlib
 from flask import Flask, request
 from twilio.twiml.messaging_response import MessagingResponse
 import anthropic
+
+# Load ICAR knowledge base
+def load_knowledge_base():
+    try:
+        kb_path = pathlib.Path(__file__).parent / "knowledge" / "crop_knowledge.json"
+        with open(kb_path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception as e:
+        logger_temp = logging.getLogger(__name__)
+        logger_temp.warning(f"Could not load knowledge base: {e}")
+        return {}
+
+KNOWLEDGE_BASE = load_knowledge_base()
 
 app = Flask(__name__)
 logging.basicConfig(level=logging.INFO)
@@ -87,14 +101,46 @@ def get_context_string(phone):
         parts.append(f"मागील समस्या: {ctx['last_issue']}")
     return " | ".join(parts) if parts else ""
 
-def build_system_prompt(phone):
+def get_relevant_crop_knowledge(query_text):
+    """Extract relevant crop knowledge from ICAR database based on query."""
+    if not KNOWLEDGE_BASE:
+        return ""
+    
+    query_lower = (query_text or "").lower()
+    crops_map = {
+        "soybean": ["soybean", "सोयाबीन", "soya"],
+        "cotton": ["cotton", "कापूस", "kapus"],
+        "sugarcane": ["sugarcane", "ऊस", "us", "cane"],
+        "tur_pigeonpea": ["tur", "तूर", "pigeonpea", "arhar"],
+        "wheat": ["wheat", "गहू", "gahu"],
+        "onion": ["onion", "कांदा", "kanda"],
+        "grape": ["grape", "द्राक्षे", "draksha", "sonaka"],
+        "pomegranate": ["pomegranate", "डाळिंब", "dalimb"],
+        "jowar_sorghum": ["jowar", "ज्वारी", "jvari", "sorghum"]
+    }
+    
+    relevant = []
+    for crop_key, keywords in crops_map.items():
+        if any(kw in query_lower for kw in keywords):
+            crop_data = KNOWLEDGE_BASE.get("crops", {}).get(crop_key, {})
+            if crop_data:
+                relevant.append(f"\n--- ICAR Data: {crop_key.upper()} ---\n{json.dumps(crop_data, ensure_ascii=False, indent=1)}")
+    
+    return "\n".join(relevant[:2]) if relevant else ""  # Max 2 crops to stay within tokens
+
+def build_system_prompt(phone, user_message=""):
     context = get_context_string(phone)
     msp_text = "\n".join([f"{k}: {v}" for k, v in MSP_2024_25.items()])
     scheme_text = "\n".join([f"{k}: {v}" for k, v in GOVT_SCHEMES.items()])
+    icar_knowledge = get_relevant_crop_knowledge(user_message)
 
     return f"""तू KisanMitra आहेस - महाराष्ट्रातील शेतकऱ्यांचा AI कृषी मित्र.
 तू एखाद्या अनुभवी, जवळच्या कृषी मित्रासारखा बोलतोस - सोपे, थेट, मराठीत.
 तुला सर्व महाराष्ट्रातील पिकांची माहिती आहे - सोयाबीन, कापूस, ऊस, तूर, ज्वारी, गहू, कांदा, द्राक्षे, डाळिंब, टोमॅटो, मका, हरभरा - सर्व पिकांवर सल्ला दे. कधीही "मला माहिती नाही" असे सांगू नकोस.
+
+तुझी माहिती ICAR आणि NIPHM च्या अधिकृत डेटावर आधारित आहे.{f" शेतकरी माहिती: {context}" if context else ""}
+
+{f"--- अधिकृत ICAR माहिती (या प्रश्नासाठी) ---{icar_knowledge}" if icar_knowledge else ""}
 
 {f"शेतकरी माहिती: {context}" if context else ""}
 
@@ -177,7 +223,7 @@ def get_response(phone, text, image_url=None):
         response = anthropic_client.messages.create(
             model="claude-haiku-4-5-20251001",
             max_tokens=600,
-            system=build_system_prompt(phone),
+            system=build_system_prompt(phone, text or ""),
             messages=messages
         )
         reply = response.content[0].text

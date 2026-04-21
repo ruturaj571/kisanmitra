@@ -1,0 +1,665 @@
+{
+  "source": "ICAR eCourse + NIPHM IPM Packages + MPKV Rahuri + VNMKV Parbhani",
+  "last_updated": "2025",
+  "crops": {
+
+    "soybean": {
+      "marathi": "सोयाबीन",
+      "type": "Kharif oilseed",
+      "maharashtra_area": "45 lakh hectare (largest in India)",
+      "major_districts": ["Latur", "Osmanabad", "Nanded", "Aurangabad", "Buldhana", "Washim", "Yavatmal"],
+      "varieties": {
+        "recommended": ["JS 335", "MAUS 71", "MAUS 81", "KDS 726 (Phule Kalyani)", "JS 9305", "NRC 7"],
+        "best_for_marathwada": ["MAUS 71", "MAUS 81", "KDS 726"],
+        "notes": "JS 335 is most popular but susceptible to Yellow Mosaic Virus. KDS 726 has better YMV resistance."
+      },
+      "agronomy": {
+        "sowing_time": "June 15 - July 15 (after 75mm rainfall)",
+        "seed_rate": "70-80 kg/ha",
+        "spacing": "45x5 cm or 30x10 cm",
+        "seed_treatment": "Thiram 3g/kg + Rhizobium + PSB culture",
+        "fertilizer": {
+          "basal": "Urea 43 kg + SSP 625 kg + MOP 33 kg per hectare",
+          "simplified": "N:P:K = 30:75:50 kg/ha at sowing",
+          "notes": "Soybean fixes its own nitrogen. Excess N causes vegetative growth."
+        },
+        "irrigation": "Critical stages: flowering (30-35 DAS) and pod filling (50-65 DAS). Rain-fed crop, 3-4 irrigations if needed.",
+        "duration": "90-110 days",
+        "yield": "15-25 quintal/ha average, up to 35 with good management"
+      },
+      "diseases": {
+        "yellow_mosaic_virus": {
+          "local_name": "पिवळा मोझेक / येलो मोझेक",
+          "symptoms": "Yellow-green mosaic pattern on leaves, stunted growth, reduced pods",
+          "cause": "Virus spread by whitefly (पांढरी माशी)",
+          "economic_threshold": "5% plants affected",
+          "management": [
+            "Use resistant variety KDS 726 or MAUS 81",
+            "Remove and destroy infected plants immediately",
+            "Control whitefly vector: Imidacloprid 17.8 SL @ 5ml/15L water",
+            "Yellow sticky traps @ 5/acre to monitor whitefly",
+            "Neem-based pesticide (Azadirachtin 1500 ppm) @ 40ml/15L as alternative"
+          ],
+          "severity": "Can cause 40-100% yield loss in severe cases"
+        },
+        "charcoal_rot": {
+          "local_name": "कोळसा कुज / खोड कुज",
+          "symptoms": "Wilting at pod filling stage, grey-black discoloration inside stem, tiny black sclerotia inside stem",
+          "cause": "Fungus Macrophomina phaseolina - worsened by drought stress",
+          "management": [
+            "Seed treatment: Thiram 3g/kg + Carbendazim 1g/kg",
+            "Avoid water stress during flowering and pod filling",
+            "Crop rotation with non-host crops (jowar, wheat)",
+            "Trichoderma viride 4g/kg seed treatment"
+          ]
+        },
+        "bacterial_pustule": {
+          "local_name": "जीवाणूजन्य फोड",
+          "symptoms": "Small yellow spots with raised center (pustule) on both leaf surfaces",
+          "cause": "Bacteria Xanthomonas axonopodis",
+          "management": [
+            "Copper oxychloride 3g/L water spray",
+            "Streptomycin 0.5g + Copper oxychloride 3g per liter spray",
+            "Use disease-free certified seed"
+          ]
+        },
+        "stem_fly": {
+          "type": "Pest",
+          "local_name": "खोड माशी",
+          "symptoms": "Yellow cotyledon leaves, wilting seedlings, white larvae inside stem",
+          "critical_period": "7-21 days after sowing",
+          "etl": "10% plants showing deadheart",
+          "management": [
+            "Seed treatment: Imidacloprid 70 WS @ 7g/kg seed (most effective)",
+            "Sowing at proper time (June 15 - July 15)",
+            "Carbofuran 3G @ 25kg/ha in furrow at sowing",
+            "Spray: Profenophos 50 EC @ 20ml/15L at 10 DAS"
+          ]
+        },
+        "girdle_beetle": {
+          "type": "Pest",
+          "local_name": "खोड किडा / कंबरकिडा",
+          "symptoms": "Two circular rings cut on stem at 10-15 cm height, upper portion dries",
+          "critical_period": "25-55 days after sowing",
+          "etl": "5% plants damaged",
+          "management": [
+            "Collect and destroy damaged stem pieces",
+            "Spray: Quinalphos 25 EC @ 20ml/15L",
+            "Chlorpyriphos 20 EC @ 20ml/15L",
+            "Profenophos 50 EC @ 20ml/15L"
+          ]
+        },
+        "spodoptera": {
+          "type": "Pest",
+          "local_name": "तंबाखू अळी / लष्करी अळी",
+          "symptoms": "Skeletonized leaves first, then complete defoliation, group feeding initially",
+          "etl": "2 egg masses or 4 larvae per meter row",
+          "management": [
+            "Collect and destroy egg masses and young larvae",
+            "Pheromone trap @ 5/acre for monitoring",
+            "Nuclear Polyhedrosis Virus (NPV) 250 LE/ha spray",
+            "Spinetoram 11.7 SC @ 7ml/15L",
+            "Chlorantraniliprole 18.5 SC @ 3ml/15L",
+            "Quinalphos 25 EC @ 20ml/15L"
+          ]
+        }
+      },
+      "harvest": {
+        "timing": "When 95% pods turn brown, leaves drop (90-100 DAS)",
+        "moisture": "Harvest when seed moisture 18-20%, dry to 12% for storage",
+        "storage": "Cool dry place, moisture below 12%, use hermetic bags"
+      }
+    },
+
+    "cotton": {
+      "marathi": "कापूस",
+      "type": "Kharif commercial crop",
+      "maharashtra_area": "42 lakh hectare",
+      "major_districts": ["Yavatmal", "Wardha", "Amravati", "Akola", "Buldhana", "Jalgaon", "Aurangabad"],
+      "varieties": {
+        "bt_hybrids": ["NHH 44 BG II", "RCH 650 BG II", "MRC 7351 BG II", "JK Vardhan"],
+        "notes": "All commercial cotton in Maharashtra is Bt hybrid. Bollworm resistance built-in but secondary pests now major issue."
+      },
+      "agronomy": {
+        "sowing_time": {
+          "summer_irrigated": "April 15 - May 15",
+          "kharif_rainfed": "June 15 - July 15 (after first rain)"
+        },
+        "spacing": "120x60 cm or 90x60 cm",
+        "seed_rate": "450g/acre (hybrid packet = 450g)",
+        "fertilizer": {
+          "total": "N:P:K = 120:60:60 kg/ha",
+          "schedule": "Basal: Full P+K + 30kg N. 30 DAS: 30kg N. 60 DAS: 30kg N. 90 DAS: 30kg N",
+          "micronutrients": "Ferrous sulphate 10kg/acre for reddening of leaves"
+        },
+        "irrigation": "Critical: germination, squaring (45 DAS), flowering (60-75 DAS), boll development (75-110 DAS)",
+        "duration": "160-180 days",
+        "yield": "8-12 quintal/ha rainfed, 15-20 quintal/ha irrigated"
+      },
+      "diseases": {
+        "pink_bollworm": {
+          "type": "Pest",
+          "local_name": "गुलाबी बोंड अळी",
+          "symptoms": "Rosette flowers (लाडू फूल), exit holes on bolls, damaged seeds inside",
+          "etl": "8-10% rosette flowers OR 5-8% infested green bolls",
+          "management": [
+            "Pheromone trap 5/acre from 45 DAS for monitoring",
+            "When ETL crossed: Chlorpyriphos 20 EC @ 20ml/15L",
+            "Profenophos 50 EC @ 20ml/15L",
+            "Spinosad 45 SC @ 4ml/15L",
+            "Summer deep ploughing to destroy pupae",
+            "Destroy crop residues after harvest"
+          ]
+        },
+        "whitefly": {
+          "type": "Pest",
+          "local_name": "पांढरी माशी",
+          "symptoms": "Yellow leaves, honeydew + sooty mold on leaves, tiny white flies under leaf",
+          "etl": "10 adults per leaf average over 5 plants",
+          "management": [
+            "Yellow sticky traps 10/acre",
+            "Avoid broad-spectrum pesticides that kill natural enemies",
+            "Spiromesifen 22.9 SC @ 10ml/15L",
+            "Diafenthiuron 50 WP @ 12g/15L",
+            "Triazophos 40 EC @ 20ml/15L",
+            "Rotate insecticides - do not use same twice"
+          ]
+        },
+        "bacterial_blight": {
+          "local_name": "जीवाणूजन्य करपा / कोनीय ठिपके",
+          "symptoms": "Angular water-soaked spots on leaves turning brown, water-soaked stem lesions",
+          "cause": "Bacteria Xanthomonas citri pv. malvacearum",
+          "management": [
+            "Seed treatment: Streptomycin 0.1g + Copper oxychloride 3g/kg seed",
+            "Spray Streptomycin 0.5g + Copper oxychloride 3g/L",
+            "Avoid overhead irrigation",
+            "Remove and destroy severely infected plants"
+          ]
+        },
+        "fusarium_wilt": {
+          "local_name": "मर रोग / विल्ट",
+          "symptoms": "Sudden wilting, yellowing of leaves, brown discoloration inside stem when cut",
+          "cause": "Fungus Fusarium oxysporum f.sp. vasinfectum - soil-borne",
+          "management": [
+            "Trichoderma viride/harzianum 4g/kg seed treatment",
+            "Soil application of Trichoderma 2.5kg/acre in FYM",
+            "Carbendazim 1g/L drench around wilting plants",
+            "Crop rotation with non-host crops for 2-3 years"
+          ]
+        }
+      }
+    },
+
+    "sugarcane": {
+      "marathi": "ऊस",
+      "type": "Annual/perennial commercial crop",
+      "maharashtra_area": "11 lakh hectare",
+      "major_districts": ["Kolhapur", "Sangli", "Satara", "Pune", "Solapur", "Ahmednagar"],
+      "varieties": {
+        "recommended": ["CO 86032", "CO 94012", "CoM 0265", "CO 740", "VSI 434", "Co 265"],
+        "early_maturing": ["CO 94012", "CoM 0265"],
+        "high_sugar": ["CO 86032", "VSI 434"],
+        "ratoon": ["CO 86032 (excellent ratoon)"]
+      },
+      "agronomy": {
+        "planting_time": {
+          "suru": "October - November (main season)",
+          "adsali": "June - August",
+          "preseason": "February - March"
+        },
+        "spacing": "90 cm between rows, sett-to-sett 60 cm",
+        "seed_rate": "40,000-45,000 setts/ha (2-3 budded setts)",
+        "seed_treatment": "Aregano 3% or Carbendazim 0.1% + Chlorpyriphos 0.1% for 10 min dip",
+        "fertilizer": {
+          "total": "N:P:K = 280:115:115 kg/ha for plant crop",
+          "ratoon": "N:P:K = 340:115:115 kg/ha",
+          "schedule": "Split N in 4 doses: planting, 30, 90, 150 DAS",
+          "micronutrients": "FeSO4 50kg/ha + ZnSO4 25kg/ha basal"
+        },
+        "duration": "Suru: 14-15 months. Adsali: 18 months. Pre-season: 12 months.",
+        "yield": "70-100 tons/ha, up to 120 with drip irrigation"
+      },
+      "diseases": {
+        "top_borer": {
+          "type": "Pest",
+          "local_name": "शेंडा अळी",
+          "symptoms": "Dead heart (central shoot dries in young crop), window pane feeding on leaves",
+          "critical_period": "2-4 months after planting",
+          "etl": "5% dead hearts",
+          "management": [
+            "Release egg parasitoid Trichogramma chilonis 50,000/acre",
+            "Apply Chlorpyriphos 10G @ 10kg/acre in leaf axils",
+            "Spray Chlorantraniliprole 18.5 SC @ 3ml/15L",
+            "Coragen (Chlorantraniliprole) 0.4G @ 4kg/ha in soil",
+            "Light traps for adult monitoring"
+          ]
+        },
+        "woolly_aphid": {
+          "type": "Pest",
+          "local_name": "लोकरी माव / मेलीबग",
+          "symptoms": "White woolly masses on stem near leaf axils, yellowing, stunting",
+          "management": [
+            "Release parasite Aphelinus mali (natural control)",
+            "Dimethoate 30 EC @ 15ml/15L spray",
+            "Chlorpyriphos 20 EC @ 20ml/15L",
+            "Avoid excessive nitrogen application"
+          ]
+        },
+        "red_rot": {
+          "local_name": "तांबेरा / लाल कुज",
+          "symptoms": "Red discoloration with white patches inside stem when cut, drying of top leaves",
+          "cause": "Fungus Colletotrichum falcatum",
+          "management": [
+            "Use resistant varieties CO 86032, CO 94012",
+            "Sett treatment in Carbendazim 0.1% for 30 min",
+            "Remove and destroy infected stools",
+            "Avoid ratoon from infected crop"
+          ]
+        }
+      }
+    },
+
+    "tur_pigeonpea": {
+      "marathi": "तूर",
+      "type": "Kharif pulse",
+      "maharashtra_area": "12 lakh hectare",
+      "major_districts": ["Latur", "Osmanabad", "Nanded", "Yavatmal", "Wardha", "Amravati"],
+      "varieties": {
+        "recommended": ["BSMR 736", "BSMR 853", "ICPL 87119 (Asha)", "PKV TRT 1", "BDN 711", "AKT 8811"],
+        "short_duration": ["ICPL 87119 (140 days)", "BDN 711 (160 days)"],
+        "wilt_resistant": ["BSMR 736", "BSMR 853", "PKV TRT 1"]
+      },
+      "agronomy": {
+        "sowing_time": "June 15 - July 15",
+        "seed_rate": "15-20 kg/ha",
+        "spacing": "90x20 cm or 60x20 cm",
+        "seed_treatment": "Thiram 3g/kg + Rhizobium culture",
+        "fertilizer": "N:P:K = 25:50:25 kg/ha at sowing only (no top-dressing)",
+        "duration": "140-180 days",
+        "yield": "8-12 quintal/ha"
+      },
+      "diseases": {
+        "fusarium_wilt": {
+          "local_name": "मर रोग",
+          "symptoms": "Sudden wilting of whole plant, brown/black discoloration inside root and stem",
+          "cause": "Fungus Fusarium udum - soil-borne",
+          "management": [
+            "Use resistant variety BSMR 736 or BSMR 853",
+            "Seed treatment: Trichoderma viride 4g/kg + Carbendazim 2g/kg",
+            "Soil application of Trichoderma 2.5kg/acre mixed with FYM",
+            "Crop rotation: avoid tur in same field 3 consecutive years",
+            "Lime application in acidic soils"
+          ]
+        },
+        "sterility_mosaic": {
+          "local_name": "बांझपणा मोझेक / वांझ रोग",
+          "symptoms": "Green mosaic on leaves, no flowers or pods, excessive vegetative growth",
+          "cause": "Virus spread by eriophyid mite",
+          "management": [
+            "Remove and destroy infected plants early",
+            "Spray Dicofol 18.5 EC @ 20ml/15L to control mite vector",
+            "Sulfur 80 WP @ 20g/15L spray",
+            "Use virus-tested healthy seed"
+          ]
+        },
+        "gram_pod_borer": {
+          "type": "Pest",
+          "local_name": "शेंगा पोखरणारी अळी (हेलिकोव्हर्पा)",
+          "symptoms": "Round holes in pods, caterpillar inside pod eating seeds",
+          "etl": "1-2 larvae per plant",
+          "management": [
+            "Pheromone trap 5/acre from flowering stage",
+            "HaNPV (Nuclear Polyhedrosis Virus) 250 LE/acre spray",
+            "Chlorantraniliprole 18.5 SC @ 3ml/15L",
+            "Indoxacarb 14.5 SC @ 7ml/15L",
+            "Neem oil 5% spray at early infestation",
+            "Spray in evening hours when larvae are active"
+          ]
+        }
+      }
+    },
+
+    "wheat": {
+      "marathi": "गहू",
+      "type": "Rabi cereal",
+      "maharashtra_area": "9 lakh hectare",
+      "major_districts": ["Nashik", "Pune", "Ahmednagar", "Solapur", "Aurangabad"],
+      "varieties": {
+        "recommended": ["NIAW 34 (Raj 4120)", "NIAW 917", "HD 2781", "K 307", "GW 322", "Phule Samadhan"],
+        "irrigated": ["NIAW 34", "HD 2781"],
+        "rainfed": ["K 307", "Phule Samadhan"]
+      },
+      "agronomy": {
+        "sowing_time": "November 1-30 (timely sown). After Dec 15 = late sown.",
+        "seed_rate": "100-125 kg/ha",
+        "spacing": "22.5 cm row spacing",
+        "seed_treatment": "Carboxin 37.5% + Thiram 37.5% DS @ 3g/kg (for loose smut)",
+        "fertilizer": {
+          "timely_sown": "N:P:K = 120:60:40 kg/ha",
+          "late_sown": "N:P:K = 80:40:20 kg/ha",
+          "schedule": "Half N + full P + full K at sowing. Remaining N at first irrigation (CRI stage, 20-25 DAS)"
+        },
+        "irrigation": "CRI (20-25 DAS), tillering (40-45 DAS), jointing (60-65 DAS), flowering (80-85 DAS), grain filling (100-105 DAS)",
+        "duration": "110-120 days",
+        "yield": "20-30 quintal/ha"
+      },
+      "diseases": {
+        "yellow_rust": {
+          "local_name": "पिवळी गंज",
+          "symptoms": "Yellow-orange pustules in stripes on leaves, powdery yellow spores",
+          "cause": "Fungus Puccinia striiformis - spreads in cool humid weather",
+          "critical_period": "Tillering to heading",
+          "management": [
+            "Use resistant varieties",
+            "Propiconazole 25 EC @ 10ml/15L at first appearance",
+            "Tebuconazole 25.9 EC @ 8ml/15L",
+            "Mancozeb 75 WP @ 30g/15L as protective spray",
+            "Two sprays 15 days apart if severe"
+          ]
+        },
+        "loose_smut": {
+          "local_name": "उघडी काजळी",
+          "symptoms": "Black powdery mass replaces grain in ear head, smut spores released at heading",
+          "cause": "Fungus Ustilago segetum var. tritici - seed-borne",
+          "management": [
+            "Seed treatment with Carboxin + Thiram before sowing - only prevention",
+            "Vitavax Power (Carboxin 37.5% + Thiram 37.5%) @ 3g/kg",
+            "No cure once infected - remove infected heads before spore release"
+          ]
+        },
+        "aphid": {
+          "type": "Pest",
+          "local_name": "माव",
+          "symptoms": "Green/yellow insects on ear heads and upper leaves, sticky honeydew",
+          "etl": "5 aphids per ear head at grain filling",
+          "management": [
+            "Natural enemies (ladybird beetle) usually control",
+            "If ETL exceeded: Dimethoate 30 EC @ 10ml/15L",
+            "Imidacloprid 17.8 SL @ 3ml/15L",
+            "Avoid spraying when crop is flowering"
+          ]
+        }
+      }
+    },
+
+    "onion": {
+      "marathi": "कांदा",
+      "type": "Rabi/Kharif vegetable",
+      "maharashtra_area": "7 lakh hectare (largest producer in India)",
+      "major_districts": ["Nashik", "Pune", "Ahmednagar", "Solapur", "Dhule"],
+      "varieties": {
+        "rabi": ["Phule Safed (white)", "N-53", "Agrifound Light Red", "Bhima Super"],
+        "kharif": ["Bhima Red", "Bhima Raj", "Baswant 780", "N-2-4-1"],
+        "export_quality": ["Agrifound Light Red", "N-53 (Nashik white)"]
+      },
+      "agronomy": {
+        "nursery": "Raise nursery 40-45 days before transplanting. Seed rate 8-10 kg/ha.",
+        "transplanting_time": {
+          "rabi": "October-November",
+          "kharif": "June-July after nursery"
+        },
+        "spacing": "15x10 cm",
+        "fertilizer": "N:P:K = 100:50:50 kg/ha. Split N: 50% basal + 25% at 30 DAT + 25% at 45 DAT",
+        "irrigation": "Every 7-10 days. Stop irrigation 15 days before harvest.",
+        "duration": "Rabi: 120-130 days. Kharif: 110-120 days.",
+        "yield": "25-30 t/ha"
+      },
+      "diseases": {
+        "purple_blotch": {
+          "local_name": "जांभळा डाग / पर्पल ब्लॉच",
+          "symptoms": "Small white spots with purple center on leaves, tip dieback in severe cases",
+          "cause": "Fungus Alternaria porri - worsened in humid conditions",
+          "management": [
+            "Mancozeb 75 WP @ 30g/15L spray every 10 days",
+            "Iprodione 50 WP @ 15g/15L",
+            "Hexaconazole 5 EC @ 10ml/15L",
+            "Start preventive sprays from 30 DAT",
+            "Avoid overhead irrigation, use drip"
+          ]
+        },
+        "thrips": {
+          "type": "Pest",
+          "local_name": "फुलकिडे / थ्रिप्स",
+          "symptoms": "Silver-white patches on leaves, distorted growth, tiny insects visible",
+          "etl": "5-10 thrips per plant",
+          "management": [
+            "Blue sticky traps @ 10/acre",
+            "Fipronil 5 SC @ 15ml/15L",
+            "Spinosad 45 SC @ 4ml/15L",
+            "Lambda-cyhalothrin 5 EC @ 8ml/15L",
+            "Spray in evening, directed to leaf axils",
+            "Alternate sprays to prevent resistance"
+          ]
+        },
+        "basal_rot": {
+          "local_name": "मुळ कुज / बेसल रॉट",
+          "symptoms": "Yellowing of outer leaves, soft rotting at base of bulb, pink-white mycelium",
+          "cause": "Fungus Fusarium oxysporum f.sp. cepae",
+          "management": [
+            "Seedling treatment: Carbendazim 2g/L for 30 min dip before transplanting",
+            "Soil drench with Carbendazim 1g/L around base",
+            "Avoid waterlogging, ensure good drainage",
+            "Crop rotation with non-allium crops"
+          ]
+        }
+      }
+    },
+
+    "grape": {
+      "marathi": "द्राक्षे",
+      "type": "Perennial horticulture",
+      "maharashtra_area": "1.2 lakh hectare",
+      "major_districts": ["Nashik", "Pune", "Sangli", "Solapur", "Ahmednagar"],
+      "varieties": {
+        "table": ["Thompson Seedless (Tas-A-Ganesh)", "Sharad Seedless", "Super Sonaka", "2 Clone", "Manjri Naveen"],
+        "wine": ["Cabernet Sauvignon", "Shiraz", "Chenin Blanc"],
+        "raisin": ["Thompson Seedless (for manauka)"]
+      },
+      "pruning_schedule": {
+        "april_pruning": {
+          "timing": "April 1-15",
+          "purpose": "Back pruning - framework development",
+          "activity": "Prune to 4-6 buds on fruiting canes"
+        },
+        "april_to_october_management": {
+          "april_may": "Training new shoots, remove weak/diseased canes, start fungicide spray program",
+          "june_july": "Monsoon disease management critical - Downy mildew pressure high. Reduce irrigation. Remove dense canopy.",
+          "august": "Reduce N application, balance vegetative-reproductive growth",
+          "september": "Cane maturity, prepare for October pruning. Apply potassium for wood ripening.",
+          "october_pruning": "Main fruiting pruning. Prune to 6-8 eye canes."
+        },
+        "spray_schedule_april_to_october": [
+          "April-May: Bordeaux mixture 1% every 15 days for Downy Mildew prevention",
+          "June-July: Ridomil Gold (Metalaxyl+Mancozeb) 2.5g/L every 10 days during monsoon",
+          "July-Aug: Fosetyl-Al 3g/L systemic fungicide for DM",
+          "Aug-Sep: Hexaconazole 5 EC @ 10ml/15L for powdery mildew",
+          "September: Stop fungicide 30 days before pruning"
+        ]
+      },
+      "diseases": {
+        "downy_mildew": {
+          "local_name": "केवडा / डाऊनी मिल्ड्यू",
+          "symptoms": "Yellow oily spots on upper leaf, white downy growth on underside, shoot tip curling",
+          "cause": "Oomycete Plasmopara viticola - favored by rain and humidity",
+          "management": [
+            "Bordeaux mixture 1% (1kg CuSO4 + 1kg lime per 100L) preventive spray",
+            "Metalaxyl + Mancozeb (Ridomil Gold) 2.5g/L curative",
+            "Fosetyl-Al 80 WP @ 3g/L",
+            "Cymoxanil + Mancozeb 3g/L",
+            "Spray both upper and lower leaf surface"
+          ]
+        },
+        "powdery_mildew": {
+          "local_name": "भुरी / पावडरी मिल्ड्यू",
+          "symptoms": "White powdery coating on leaves, shoots, berries. Berries crack.",
+          "cause": "Fungus Uncinula necator",
+          "management": [
+            "Wettable sulfur 3g/L spray - most cost-effective",
+            "Hexaconazole 5 EC @ 10ml/15L",
+            "Tebuconazole 25 EC @ 8ml/15L",
+            "Spiroxamine 50 EC @ 8ml/15L",
+            "Do not spray sulfur above 35°C temperature"
+          ]
+        },
+        "anthracnose": {
+          "local_name": "काळे डाग / अँथ्राकनोज",
+          "symptoms": "Circular dark spots on leaves and berries with light center",
+          "management": [
+            "Mancozeb 75 WP @ 25g/15L",
+            "Carbendazim 50 WP @ 10g/15L",
+            "Remove and destroy infected plant parts"
+          ]
+        }
+      },
+      "fertilizer_schedule": {
+        "annual": "N:P:K = 300:150:200 kg/ha for bearing vineyard",
+        "post_april_pruning": "Apply FYM 40 t/ha + Single Super Phosphate 300 kg/ha + MOP 200 kg/ha",
+        "june": "100 kg Urea/ha split in 2 doses",
+        "august_september": "50 kg MOP/ha for cane maturity and sugar accumulation"
+      }
+    },
+
+    "pomegranate": {
+      "marathi": "डाळिंब",
+      "type": "Perennial horticulture",
+      "maharashtra_area": "1.9 lakh hectare",
+      "major_districts": ["Solapur", "Nashik", "Pune", "Ahmednagar", "Osmanabad", "Latur"],
+      "varieties": {
+        "commercial": ["Bhagwa (most popular)", "Mridula", "Ganesh", "Ruby"],
+        "best_maharashtra": "Bhagwa - thick skin, dark red arils, good shelf life"
+      },
+      "diseases": {
+        "bacterial_blight_telya": {
+          "local_name": "तेल्या रोग / जीवाणूजन्य करपा",
+          "symptoms": "Water-soaked oily patches on leaves turning dark, spots on fruits, fruit cracking",
+          "cause": "Bacteria Xanthomonas axonopodis pv. punicae",
+          "management": [
+            "Copper oxychloride 3g/L + Streptomycin 0.5g/L spray",
+            "Bordeaux mixture 1% preventive spray",
+            "Remove and destroy infected plant parts",
+            "Avoid overhead irrigation",
+            "Spray at 15 day interval during rain"
+          ],
+          "note": "Major disease in Maharashtra - responsible for heavy losses"
+        },
+        "fruit_borer": {
+          "type": "Pest",
+          "local_name": "फळ पोखरणारी अळी",
+          "symptoms": "Entry hole in fruit, frass visible, internal damage, premature fruit drop",
+          "management": [
+            "Fruit bagging with paper bags at marble stage",
+            "Chlorantraniliprole 18.5 SC @ 3ml/15L spray at petal fall",
+            "Indoxacarb 14.5 SC @ 7ml/15L",
+            "Pheromone trap 5/acre for monitoring"
+          ]
+        }
+      }
+    },
+
+    "jowar_sorghum": {
+      "marathi": "ज्वारी",
+      "type": "Kharif/Rabi cereal",
+      "maharashtra_area": "30 lakh hectare (rabi), 13 lakh hectare (kharif)",
+      "major_districts": ["Solapur", "Osmanabad", "Latur", "Aurangabad", "Ahmednagar"],
+      "varieties": {
+        "kharif": ["CSV 15", "CSH 16", "SPH 1634", "CSH 30"],
+        "rabi": ["Maldandi 35-1", "CSR 3 (Rajmoti)", "Phule Revati", "Phule Vasudha"],
+        "dual_purpose": ["CSV 15R (grain+fodder)"]
+      },
+      "agronomy": {
+        "sowing_time": {
+          "kharif": "June 15 - July 15",
+          "rabi": "September 15 - October 15"
+        },
+        "seed_rate": "10-12 kg/ha",
+        "spacing": "45x15 cm",
+        "fertilizer": "N:P:K = 80:40:40 kg/ha. Half N at sowing, half at knee height stage.",
+        "duration": "Kharif 100-110 days, Rabi 110-120 days",
+        "yield": "15-25 quintal/ha"
+      },
+      "diseases": {
+        "shoot_fly": {
+          "type": "Pest",
+          "local_name": "खोड माशी",
+          "symptoms": "Dead heart - central shoot turns yellow and dies, can be pulled out easily",
+          "critical_period": "0-30 DAS",
+          "management": [
+            "Early sowing to escape peak fly period",
+            "Seed treatment: Imidacloprid 70 WS @ 7g/kg",
+            "Carbofuran 3G @ 25kg/ha at sowing",
+            "Remove and destroy dead hearts"
+          ]
+        },
+        "grain_mold": {
+          "local_name": "दाण्यांची बुरशी / दाणे काळे पडणे",
+          "symptoms": "Pink, red, black discoloration on grains during grain filling",
+          "cause": "Complex of fungi Fusarium, Curvularia, Colletotrichum",
+          "management": [
+            "Use resistant varieties Phule Vasudha, CSR 3",
+            "Spray Mancozeb 75 WP @ 30g/15L at grain filling",
+            "Thiram 75 WP @ 30g/15L spray",
+            "Harvest at proper maturity, avoid rain at harvest"
+          ]
+        }
+      }
+    }
+  },
+
+  "fertilizer_guide": {
+    "urea": {
+      "n_content": "46% N",
+      "calculation": "For 30 kg N/ha: 30/0.46 = 65 kg Urea/ha",
+      "application": "Split doses, never apply before rain forecast"
+    },
+    "dap": {
+      "content": "18% N + 46% P2O5",
+      "common_use": "Basal application at sowing"
+    },
+    "single_super_phosphate": {
+      "content": "16% P2O5 + 12% S",
+      "advantage": "Contains sulfur - good for oilseeds like soybean"
+    },
+    "mop": {
+      "content": "60% K2O",
+      "use": "For fruit crops and root crops"
+    },
+    "micronutrients": {
+      "zinc_deficiency": "Symptoms: White striping on young leaves. Apply ZnSO4 25 kg/ha basal or 5g/L foliar.",
+      "iron_deficiency": "Symptoms: Yellowing between veins on young leaves. Apply FeSO4 10 kg/ha or spray 1%.",
+      "boron_deficiency": "Symptoms: Hollow stem in onion, poor fruit set. Borax 10 kg/ha or 0.2% spray."
+    }
+  },
+
+  "pesticide_safety": {
+    "banned_pesticides": ["Monocrotophos", "Endosulfan", "Methomyl", "Triazophos (on vegetables)", "Chlorpyriphos (on vegetables from 2020)"],
+    "safety_rules": [
+      "Always wear mask, gloves, full sleeve shirt while spraying",
+      "Never spray against wind direction",
+      "Wash hands and face after spraying",
+      "Do not spray during flowering (honey bee protection)",
+      "Observe pre-harvest interval (PHI) before harvest",
+      "Do not spray at midday in summer - spray early morning or evening"
+    ],
+    "first_aid_pesticide_poisoning": "Remove from exposure, wash with water, go to nearest hospital immediately. Poison Control: 1800-116-117"
+  },
+
+  "soil_health": {
+    "soil_testing_interpretation": {
+      "pH": {
+        "ideal": "6.5-7.5",
+        "acidic_below_6": "Apply lime 2-4 t/ha",
+        "alkaline_above_8": "Apply gypsum 2-4 t/ha or sulfur 200 kg/ha"
+      },
+      "organic_carbon": {
+        "low_below_0.5": "Apply FYM 10 t/ha or compost",
+        "medium_0.5_to_0.75": "Apply FYM 5 t/ha",
+        "good_above_0.75": "Maintain with cover crops"
+      }
+    },
+    "organic_farming_inputs": {
+      "jeevamrit": "10 kg desi cow dung + 10 L desi cow urine + 2 kg besan + 1 kg jaggery + 1 handful soil from tree base in 200L water. Apply after 7 days fermentation @ 200L/acre.",
+      "dashparni_kadha": "Neem + tobacco + chilli + garlic extract. Natural pesticide.",
+      "ghana_jeevamrit": "Solid form of jeevamrit for soil application."
+    }
+  }
+}
